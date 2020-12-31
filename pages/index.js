@@ -1,66 +1,152 @@
-import Head from 'next/head'
-import Link from 'next/link'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import Layout, { siteTitle } from "../components/layout";
+import { getSortedPostsData } from "../lib/posts";
+import {
+  Box,
+  Image,
+  Text,
+  Heading,
+  Flex,
+  Stack,
+  StackDivider,
+  AvatarGroup,
+  Avatar,
+} from "@chakra-ui/react";
+import { motion } from "framer-motion";
 
-export default function Home() {
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Go to <Link href="/posts/first-post"><a>first-post</a></Link>
-        </h1>
+/* When I generated the random number in the PageHeader, I got a
+  ugly warning in console about classes not matching between screen
+  refreshes.  getStaticProps seems to be the right way to do it with
+  statically rendered pages */
+export async function getStaticProps() {
+  const allPostsData = getSortedPostsData();
+  const randomClass = "tileImage" + Math.floor(Math.random() * Math.floor(10));
 
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
-  )
+  return {
+    props: {
+      allPostsData,
+      randomClass,
+    },
+  };
 }
+
+export default function Home({ allPostsData, randomClass }) {
+  return (
+    <Layout inPage="home" randomClass={randomClass}>
+      <Head>
+        <title>{siteTitle}</title>
+      </Head>
+      <section>
+        <Flex maxW="2xl" m="0 auto" mt={10}>
+          <Heading as="h6" size="md" fontWeight="regular" px={4}>
+            Welcome to my blog / portfolio / playground.
+          </Heading>
+        </Flex>
+        <Flex maxW="2xl" m="0 auto" mt={10}>
+          <Heading as="h6" size="md" fontWeight="regular" px={4}>
+            My professional focus is on{" "}
+            <strong style={{ fontWeight: 700 }}>Web Development</strong>,
+            especially on the frontend with{" "}
+            <strong style={{ fontWeight: 700 }}>Javascript and React-JS</strong>
+            ✨ I've also been doing mobile apps with React Native for a few
+            years now.
+          </Heading>
+
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: { scale: 0.2, opacity: 0, x: 1200, y: -400 },
+              visible: {
+                scale: 1,
+                opacity: 1,
+                x: 0,
+                y: 0,
+                transition: { delay: 0.5, duration: 1 },
+              },
+            }}
+          >
+            <AvatarGroup
+              width={[
+                "100%", // 0-30em
+                "50%", // 30em-48em
+                "25%", // 48em-62em
+                "15%", // 62em+
+              ]}
+              max={12}
+            >
+              <Avatar name="Javascript" src="/img/tech/js.png" />
+              <Avatar name="React-JS" src="/img/tech/react2.jpg" />
+              <Avatar name="Next-JS" src="/img/tech/nextjs.png" />
+              <Avatar name="HTML5" src="/img/tech/html5.png" />
+              <Avatar name="CSS3" src="/img/tech/css3.png" />
+            </AvatarGroup>
+          </motion.div>
+        </Flex>
+        <Box
+          maxW="3xl"
+          m="0 auto"
+          borderWidth="1px"
+          borderRadius="lg"
+          overflow="hidden"
+          mt={10}
+          boxShadow="md"
+        >
+          <Stack spacing={3} p={5}>
+            <Text fontSize="3xl">
+              🎅 Happy Holidays 🎄 - We're almost to 2021 🎉
+            </Text>
+            <Text fontSize="lg">
+              New for this year is another incarnation of my website.
+            </Text>
+
+            <Text fontSize="lg">
+              This time we have Next.js under the hood, with emotion for
+              css-in-js goodness, Chakra-UI for some prefad React-JS components
+              and more.
+            </Text>
+            <Text fontSize="lg">
+              I'm going to be putting up my old blog posts, as well as some
+              links to projects.
+            </Text>
+          </Stack>
+          <hr />
+          <Stack spacing={3} p={5}>
+            <Text fontSize="lg">
+              I'll be migrating over my old blog posts and linking to some
+              projects as I build out this site over time.
+            </Text>
+          </Stack>
+        </Box>
+      </section>
+      <Box my={20}>
+        <Image
+          m="0 auto"
+          src="/img/learn.gif"
+          borderRadius="lg"
+          alt="my motto"
+        />
+
+      </Box>
+    </Layout>
+  );
+}
+
+/* 
+      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+        <h2 className={utilStyles.headingLg}>Blog</h2>
+        <ul >
+          {allPostsData.map(({ id, date, title }) => (
+            <li className={utilStyles.listItem} key={id}>
+              {title}
+              <br />
+              {id}
+              <br />
+              {date}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+*/
