@@ -2,6 +2,7 @@ import { Flex, Text, Center, Box, Heading, Button } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import DarkModeSwitch from "./DarkModeSwitch";
 import Link from "next/link";
+import { useState } from "react";
 
 const MenuItems = (props) => {
   const { children, inPage, disabled } = props;
@@ -48,7 +49,7 @@ const WithAnimation = ({ inPage, children }) => {
 };
 
 function PageHeader(props) {
-  const [show, setShow] = React.useState(false);
+  const [show, setShow] = useState(false);
   const { randomClass } = props;
   const handleToggle = () => setShow(!show);
   return (

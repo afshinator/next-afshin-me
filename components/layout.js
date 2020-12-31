@@ -12,17 +12,12 @@ import {
   Progress,
 } from "@chakra-ui/react";
 
-// import PageHeader from "./PageHeader";
+import PageHeader from "./PageHeader";
 
 const name = "Shinators";
 export const siteTitle = "Afshin.me - Blog Portfolio Website";
 
-export default function Layout({children}) {
-  return children
-}
-
-
-function Layout1({ children, inPage, randomClass }) {
+export default function Layout({ children, inPage, randomClass }) {
   console.log("layout.js: home?", inPage);
   return (
     <>
