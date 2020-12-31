@@ -2,15 +2,94 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
+    Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  line-height: 1.6;
+  font-size: 18px;
 }
 
 * {
   box-sizing: border-box;
+}
+
+a {
+  color: #0070f3;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+@font-face {
+  font-family: "BarlowCondensed";
+  src: url("/fonts/BarlowCondensed-Regular.ttf");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "BarlowCondensedBold";
+  src: url("/fonts/BarlowCondensed-Bold.ttf");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "BarlowCondensedItalic";
+  src: url("/fonts/BarlowCondensed-Italic.ttf");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+.barlow {
+  font-family: "BarlowCondensed";
+}
+
+.tileImage0{
+  background-color: #d69e2e;
+  background-image: url("/img/patterns/bamboo.svg");
+}
+.tileImage1{
+  background-color: #d69e2e;
+  background-image: url("/img/patterns/board.svg");
+}
+.tileImage2{
+  background-color: #d69e2e;
+  background-image: url("/img/patterns/diagonal.svg");
+}
+.tileImage3{
+  background-color: #d69e2e;
+  background-image: url("/img/patterns/eyes.svg");
+}
+.tileImage4{
+  background-color: #d69e2e;
+  background-image: url("/img/patterns/floor.svg");
+}
+.tileImage5{
+  background-color: #d69e2e;
+  background-image: url("/img/patterns/invite.svg");
+}
+.tileImage6{
+  background-color: #d69e2e;
+  background-image: url("/img/patterns/bamboo.svg");
+}
+.tileImage7{
+  background-color: #d69e2e;
+  background-image: url("/img/patterns/signal.svg");
+}
+.tileImage8{
+  background-color: #d69e2e;
+  background-image: url("/img/patterns/texture.svg");
+}
+.tileImage9{
+  background-color: #d69e2e;
+  background-image: url("/img/patterns/topography.svg");
 }
